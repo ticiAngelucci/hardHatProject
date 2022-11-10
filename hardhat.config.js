@@ -5,7 +5,7 @@
 require('dotenv').config();
 require("@nomiclabs/hardhat-ethers");
 
-const { API_URL, PRIVATE_KEY } = process.env;
+const { API_URL } = process.env;
 
 module.exports = {
    solidity: "0.8.17",
@@ -13,7 +13,6 @@ module.exports = {
       hardhat: {
         forking: {
           url: API_URL,
-          blockNumber: 14390000
         }
       },
    },
