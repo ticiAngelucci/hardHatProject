@@ -22,6 +22,13 @@ contract Deposit {
     constructor() {
         matic.approve(address(aaveLendingPool), type(uint256).max);
     }
+    receive() external payable{
+        userDepositedMatic[msg.sender] += msg.value;
+    }
+    //Funcion para ver el balance
+    function getBalance(address accountAddress) external view returns (uint256){
+        return userDepositedMatic[accountAddress];
+    }
     //Funcion para depositar
     function userDepositMatic(uint256 _amountInMatic) external {
         userDepositedMatic[msg.sender] = _amountInMatic;
@@ -36,5 +43,14 @@ contract Deposit {
         require(matic.transferFrom(address(this), msg.sender, _amountInMatic), "Matic Transferencia fallo");
         
         userDepositedMatic[msg.sender] = userDepositedMatic[msg.sender] - _amountInMatic;
+    } */
+    /* function addBalance() external{
+        const setWMaticBalanceFor = (async (address, amount) => {
+        const wmaticSlot = 3;
+        const newBalance = ethers.utils.parseUnits(amount);
+        const index      = ethers.utils.solidityKeccak256(['uint256', 'uint256'], [address, wmaticSlot]);
+        const balance32  = ethers.utils.hexlify(ethers.utils.zeroPad(newBalance.toHexString(), 32));
+        await ethers.provider.send('hardhat_setStorageAt', ["0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270", index.toString(), balance32]);
+    })
     } */
 }
