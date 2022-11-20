@@ -4,6 +4,7 @@
 
 require('dotenv').config();
 require("@nomiclabs/hardhat-ethers");
+require("@nomiclabs/hardhat-waffle");
 
 const { API_URL } = process.env;
 
@@ -16,4 +17,5 @@ module.exports = {
         }
       },
    },
+   
 }

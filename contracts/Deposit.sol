@@ -44,13 +44,4 @@ contract Deposit {
         
         userDepositedMatic[msg.sender] = userDepositedMatic[msg.sender] - _amountInMatic;
     } */
-    /* function addBalance() external{
-        const setWMaticBalanceFor = (async (address, amount) => {
-        const wmaticSlot = 3;
-        const newBalance = ethers.utils.parseUnits(amount);
-        const index      = ethers.utils.solidityKeccak256(['uint256', 'uint256'], [address, wmaticSlot]);
-        const balance32  = ethers.utils.hexlify(ethers.utils.zeroPad(newBalance.toHexString(), 32));
-        await ethers.provider.send('hardhat_setStorageAt', ["0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270", index.toString(), balance32]);
-    })
-    } */
 }
