@@ -43,7 +43,7 @@ describe("Ver balance", function(){
             expect(await provider.getBalance(myContract.address)).to.equal(0);
 
 
-            expect( await myContract.getBalance(address.address)).to.equal(10);
+            expect( await myContract.getBalance(address.address)).to.equal(0);
             console.log("ea", await myContract.getBalance(address.address));
         })
     })

@@ -1,6 +1,7 @@
  // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
-import '../interface/openzeppelin/IERC20.sol';
+import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
+import "hardhat/console.sol";
 
 interface IaToken {
     function balanceOf(address _user) external view returns (uint256);
@@ -20,7 +21,8 @@ contract Deposit {
     mapping(address => uint256) public userDepositedMatic;
     
     constructor() {
-        matic.approve(address(aaveLendingPool), type(uint256).max);
+        console.log("ea",IERC20Metadata(0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270).symbol());
+        /* matic.approve(address(aaveLendingPool), type(uint256).max); */
     }
     receive() external payable{
         userDepositedMatic[msg.sender] += msg.value;
