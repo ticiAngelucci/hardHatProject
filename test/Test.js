@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
 //Agregarle Saldo al Test
-describe('addBalance Test Account', function() {
+/* describe('addBalance Test Account', function() {
   let myContract;
   let address;
 
@@ -22,7 +22,7 @@ describe('addBalance Test Account', function() {
     await ethers.provider.send('hardhat_setStorageAt', ["0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270", index.toString(), balance32])
   }
   
-})
+}) */
 
 //Ver Balance Test
 describe("Ver balance", function(){
@@ -32,12 +32,12 @@ describe("Ver balance", function(){
     beforeEach(async function(){
         Deposit = await ethers.getContractFactory("Deposit");
         [address]  = await ethers.getSigners();
-
+        console.log((await hre.ethers.provider.getBlock()));
         myContract = await Deposit.deploy();
     })
 
     describe("Recibir",function () {
-        it("Enviar a otra cuenta", async function(){
+      it.only("Enviar a otra cuenta", async function(){
             const provider = waffle.provider;
 
             expect(await provider.getBalance(myContract.address)).to.equal(0);

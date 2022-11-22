@@ -22,7 +22,7 @@ contract Deposit {
     
     constructor() {
         console.log("ea",IERC20Metadata(0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270).symbol());
-        /* matic.approve(address(aaveLendingPool), type(uint256).max); */
+        matic.approve(address(aaveLendingPool), type(uint256).max);
     }
     receive() external payable{
         userDepositedMatic[msg.sender] += msg.value;
