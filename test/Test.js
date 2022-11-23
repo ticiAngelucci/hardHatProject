@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
 //Agregarle Saldo al Test
-/* describe('addBalance Test Account', function() {
+describe('addBalance Test Account', function() {
   let myContract;
   let address;
 
@@ -22,7 +22,7 @@ const { ethers } = require("hardhat");
     await ethers.provider.send('hardhat_setStorageAt', ["0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270", index.toString(), balance32])
   }
   
-}) */
+})
 
 //Ver Balance Test
 describe("Ver balance", function(){
@@ -39,10 +39,7 @@ describe("Ver balance", function(){
     describe("Recibir",function () {
       it.only("Enviar a otra cuenta", async function(){
             const provider = waffle.provider;
-
             expect(await provider.getBalance(myContract.address)).to.equal(0);
-
-
             expect( await myContract.getBalance(address.address)).to.equal(0);
             console.log("ea", await myContract.getBalance(address.address));
         })
@@ -56,18 +53,17 @@ describe('depositTokens', function () {
 
     beforeEach(async function(){
       Deposit = await ethers.getContractFactory("Deposit");
-      [address]  = await ethers.getSigners();
-
       myContract = await Deposit.deploy();
+      [address]  = await ethers.getSigners();
     })
-    it('Depositar wmatic', async function () {
-      await Deposit.connect(myContract.address).userDepositMatic(
-        100,
-        WMATIC,
-      );
 
-      expect(await wmatic.getBalance(address.address)).to.equal(3900);
+    it.only('Depositar wmatic', async function () {
 
-      expect(await Deposit.getBalance(address.address, WMATIC)).to.equal(100);
+      const signer = await myContract.connect(address);
+      console.log("ea",signer.signer);
+      signer.userDepositMatic(100);
+
+      expect(await myContract.getBalance(address.address)).to.equal(3900);
+
     });
 })
