@@ -32,6 +32,10 @@ contract Deposit {
     function getBalance(address accountAddress) external view returns (uint256){
         return userDepositedMatic[accountAddress];
     }
+    //View para crear hash unico y asignarlo a una transaccion
+    function getHash(uint256 _amountInMatic) public view returns(bytes32 result){
+        return keccak256(abi.encodePacked(msg.sender, _amountInMatic));
+    }
     //Funcion para depositar
     function userDepositMatic(bytes32 trx_hash,uint256 _amountInMatic) external {
         //Verificar que el hash de la transaccion no esta vacia
