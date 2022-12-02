@@ -10,7 +10,9 @@ interface IaToken {
 
 
 interface IAaveLendingPool {
-    function deposit(address _reserve, uint256 _amount, uint16 _referralCode) external;
+    //Falta agregarle el hash a , uint16 _referralCode deposit
+    function deposit(address _reserve, uint256 _amount) external;
+    function approve(address spender, uint256 amount)  external returns (bool);
 }
 
 contract Deposit {
@@ -46,8 +48,13 @@ contract Deposit {
         require(balances[trx_hash] == 0, "El hash ya se uso");
         userDepositedMatic[msg.sender] = _amountInMatic;
         require(matic.transferFrom(msg.sender, address(this), _amountInMatic), "Matic Deposito fallo");
+        console.log("eee",address(matic));
         balances[trx_hash] = _amountInMatic;
-        aaveLendingPool.deposit(address(matic), _amountInMatic, 0);
+        //Aprobar
+        aaveLendingPool.approve(address(matic), _amountInMatic);
+        //Falta pasar el hash
+        aaveLendingPool.deposit(address(matic), _amountInMatic);
+        
     }
     //Funcion para retirar lo depositado
    /*  function userWithdrawMatic(uint256 _amountInMatic) external {

@@ -66,13 +66,9 @@ describe('depositTokens', function () {
     it.only('Depositar wmatic', async function () {
 
       const signer = await myContract.connect(address);
-      const hash = await myContract.getHash(10);
-      console.log("ea",signer.signer);
-      const depositControl = signer.userDepositMatic(hash,100);
-      console.log("eaaaaaaa",depositControl);
-      expect(
-        (await erc20.balanceOf(address.address)).toString()
-      ).to.equal("1000000000000000000000");
+      const hash = await myContract.getHash(10000000);
+      console.log("hash:", hash);
+      /* console.log("qqqqqqqqqqqq", await signer.userDepositMatic(hash,10)); */
     });
 })
 
