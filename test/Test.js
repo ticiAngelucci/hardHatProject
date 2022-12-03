@@ -50,14 +50,8 @@ describe("Ver balance", function(){
 describe('depositTokens', function () {
     let myContract;
     let address;
-    let erc20;
 
     beforeEach(async function(){
-      // Deploy ERC20 token
-      const ERC20Contract = await ethers.getContractFactory("MockMaticToken");
-      erc20 = await ERC20Contract.deploy();
-      await erc20.deployed();
-      // Deploy deposit contract
       Deposit = await ethers.getContractFactory("Deposit");
       myContract = await Deposit.deploy();
       [address]  = await ethers.getSigners();
@@ -66,9 +60,8 @@ describe('depositTokens', function () {
     it.only('Depositar wmatic', async function () {
 
       const signer = await myContract.connect(address);
-      const hash = await myContract.getHash(10000000);
-      console.log("hash:", hash);
-      /* console.log("qqqqqqqqqqqq", await signer.userDepositMatic(hash,10)); */
+      console.log("ea",signer.signer);
+      signer.userDepositMatic(100);
+
     });
 })
-
