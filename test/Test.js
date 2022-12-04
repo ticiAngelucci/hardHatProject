@@ -61,7 +61,6 @@ describe('depositTokens', function () {
 
       const signer = await myContract.connect(address);
       console.log("ea",signer.signer);
-      signer.userDepositMatic(100);
-
+      await signer.userDepositMatic(100);
     });
 })
